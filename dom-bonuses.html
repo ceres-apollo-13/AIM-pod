@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM Bonus</title>
+</head>
+<body>
+<h1>DOM Bonus Exercise</h1>
+<h3> List of Items</h3>
+<ul class="list-items">
+
+</ul>
+
+<script>
+
+    //  BONUS 1 (grocery list APP)
+    // Allow the user to enter a certain number of items and then display them on the page.
+    // - for each item, prompt the user for the name of the item, and store in an array of items.
+    // - for each item in the array of items create a new li element with the correct text and append to the DOM
+    // - for a simpler alternative, build an entire HTML string and set the innerHTML of an existing <ul> element
+
+    var groceryList = [];
+    var item1 = prompt('enter a grocery item you want to purchase');
+    var item2 = prompt('enter a grocery item you want to purchase');
+    var item3 = prompt('enter a grocery item you want to purchase');
+    var item4 = prompt('enter a grocery item you want to purchase');
+    var item5 = prompt('enter a grocery item you want to purchase');
+
+
+
+    function addListItem() {
+        for (var i = 1; i < 6; i++){
+            //eval method takes the string and converts it to JS code. (item + i) becomes
+            // the string 'item1', then 'item2' etc. and then it converts to the var named item1, item2 etc.
+            groceryList.push(eval('item' + i))
+        }
+    }
+
+    addListItem();
+
+    console.log(groceryList);
+    var toList = '<li>' + groceryList.join('</li> <li>') + '</li>';
+
+    var listItems = document.getElementsByClassName('list-items');
+
+    listItems[0].innerHTML = toList;
+
+
+    // BONUS 2 (custom styling)
+    // In the same dom-bonuses.html page, allow the user to select custom styling for the page by setting the background color,
+    // font color, and font-family for the page. Add additional style changes to have fun and experiment!
+
+
+
+    //     BONUS 3 (profile create form)
+    // Create a form that will allow the user to enter the following information in text inputs:
+    //     firstName
+    // lastName
+    // username
+    // email
+    // address
+    // age
+    // shortBio
+    // Create a function, createUserProfileDiv() that when run will grab all data in the form inputs and build a div with the user's entered information and append it to the page. Test it by running it in the JS console.
+</script>
+</body>
+</html>
