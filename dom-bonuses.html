@@ -8,11 +8,30 @@
     <title>DOM Bonus</title>
 </head>
 <body>
-<h1>DOM Bonus Exercise</h1>
-<h3> List of Items</h3>
-<ul class="list-items">
+    <div>
+        <h1>DOM Bonus Exercise</h1>
+    </div>
+    <div>
+        <h3> List of Items</h3>
+        <ul class="list-items"></ul>
+    </div>
+    <div>
+        <label for="bg-color">Choose a Background Color</label>
+        <select name="bg-color" id="bg-color">
+            <option id="blue" value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+            <option value="red">Red</option>
+            <option value="purple">Orange</option>
+        </select>
 
-</ul>
+        <button id="blue-bg" value="blue">make background blue</button>
+    </div>
+
+
+
+
+
 
 <script>
 
@@ -22,7 +41,7 @@
     // - for each item in the array of items create a new li element with the correct text and append to the DOM
     // - for a simpler alternative, build an entire HTML string and set the innerHTML of an existing <ul> element
 
-    var groceryList = [];
+  /*  var groceryList = [];
     var item1 = prompt('enter a grocery item you want to purchase');
     var item2 = prompt('enter a grocery item you want to purchase');
     var item3 = prompt('enter a grocery item you want to purchase');
@@ -46,14 +65,24 @@
 
     var listItems = document.getElementsByClassName('list-items');
 
-    listItems[0].innerHTML = toList;
+    listItems[0].innerHTML = toList;*/
 
 
     // BONUS 2 (custom styling)
     // In the same dom-bonuses.html page, allow the user to select custom styling for the page by setting the background color,
     // font color, and font-family for the page. Add additional style changes to have fun and experiment!
 
+    var userBgColor = document.getElementById('bg-color').value;
+    var bluebtn = document.getElementById('blue-bg').value;
+    console.log(userBgColor);
 
+    var bgColor = function () {
+        if (userBgColor === 'blue'){
+            document.body.style.backgroundColor = "blue";
+        }
+    };
+
+    document.getElementById('blue').addEventListener('click', bgColor, false);
 
     //     BONUS 3 (profile create form)
     // Create a form that will allow the user to enter the following information in text inputs:
