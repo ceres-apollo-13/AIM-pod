@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wave Bonus</title>
+</head>
+<body>
+<script>
+
+    // todo: In this simple Kata your task is to create a function that turns a string into a Wave. You will be passed a
+    // string and you must return that string in an array where an uppercase letter is a person standing up.
+
+    // 1.  The input string will always be lower case but maybe empty.
+    // 2.  If the character in the string is whitespace then pass over it as if it was an empty seat.
+
+
+    function wave(str) {
+        var waveArr = [];
+
+
+
+        str.split("").forEach(function(char, index){
+           waveArr.push(str.slice(0, index) + char.toUpperCase() + str.slice(index+1));
+
+        });
+        return waveArr;
+    }
+
+    console.log(wave("hello"));
+
+
+</script>
+</body>
+</html>
