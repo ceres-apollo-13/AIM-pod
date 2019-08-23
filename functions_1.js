@@ -2,22 +2,13 @@
 
 
 function stringTimes(str, n){
-    return str.repeat(n)
+    str = str + " ";
+
+    return str.repeat(n);
 
 }
 
-
-
-// Make a function named isBlank(input) that determines if a given input is spaces, newline characters, or tabs.
-
-
-function isBlank(input){
-    if(input.includes('') || input.includes('\n') || input.includes('\t')){
-        return 'true';
-    }else{
-        return false
-    }
-}
+console.log(stringTimes('test', 4));
 
 
 
@@ -28,7 +19,8 @@ function rollDice(sides){
     var dice = Math.floor(Math.random() * sides) + 1;
     return dice
 }
-rollDice(5)
+
+console.log(rollDice(6));
 
 
 // Write a function called getRandomNumber(min, max) that returns a random number between min and max values sent to that function call.
@@ -36,4 +28,6 @@ rollDice(5)
 function getRandomNumber(max, min){
     var num = Math.floor(Math.random() * max) + min;
     return num
-}getRandomNumber(5, 1)
+}
+
+console.log(getRandomNumber(5, 1));
