@@ -28,12 +28,16 @@
     var interval = 1000;
 
     var intervalId = setInterval(function () {
-            stopwatch.count += 1;
-            console.log(stopwatch);
+           if (stopwatch.start() === true) {
+               stopwatch.count += 1;
+               console.log(stopwatch.count);
+           }
+
 
     }, interval);
 
-        console.log(document.getElementById('start-timer').value);
+
+
 
 
 
@@ -44,12 +48,11 @@
         count: 0,
 
         start: function(){
-            console.log(document.getElementById('start-timer').value);
-            interval = 1000;
+            return true;
         },
 
         pause: function () {
-            interval = 0;
+
         },
 
         reset: function () {
