@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        @keyframes move-twink-back {
+            from {background-position:0 0;}
+            to {background-position:-10000px 5000px;}
+        }
+        @-webkit-keyframes move-twink-back {
+            from {background-position:0 0;}
+            to {background-position:-10000px 5000px;}
+        }
+        @-moz-keyframes move-twink-back {
+            from {background-position:0 0;}
+            to {background-position:-10000px 5000px;}
+        }
+        @-ms-keyframes move-twink-back {
+            from {background-position:0 0;}
+            to {background-position:-10000px 5000px;}
+        }
+
+
+        .stars, .twinkling {
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            width:100%;
+            height:100%;
+            display:block;
+
+        }
+
+
+        .stars {
+            background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+            z-index:-1;
+        }
+
+        .twinkling{
+            background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+            z-index:0;
+
+            -moz-animation:move-twink-back 200s linear infinite;
+            -ms-animation:move-twink-back 200s linear infinite;
+            -o-animation:move-twink-back 200s linear infinite;
+            -webkit-animation:move-twink-back 200s linear infinite;
+            animation:move-twink-back 200s linear infinite;
+        }
+
+        #favSW{
+            width: 17.5em;
+
+        }
+        .fadeout {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s 2s, opacity 2s linear;
+        }
+
+        .star-wars {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            height: 800px;
+            color: #feda4a;
+            font-family: 'Pathway Gothic One', sans-serif;
+            font-size: 500%;
+            font-weight: 600;
+            letter-spacing: 6px;
+            line-height: 150%;
+            perspective: 400px;
+            text-align: justify;
+        }
+
+        .crawl {
+            position: relative;
+            top: 9999px;
+            transform-origin: 10% 100%;
+            animation: crawl 65s linear;
+            z-index: 5;
+        }
+
+        .crawl > .title {
+            font-size: 90%;
+            text-align: center;
+        }
+
+        .crawl > .title h1 {
+            margin: 0 0 100px;
+            text-transform: uppercase;
+        }
+
+        @keyframes crawl {
+            0% {
+                top: 0;
+                transform: rotateX(20deg)  translateZ(0);
+            }
+            100% {
+                top: -9000px;
+                transform: rotateX(25deg) translateZ(-2600px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<input id="favSW" placeholder="What's your favorite Star Wars Title?" type="text">
+<button id="go">Go</button>
+<div id="stars"></div>
+<section class="star-wars">
+</section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+
+        $("#go").click(function () {
+            $('#favSW, #go').addClass('fadeout');
+
+            setTimeout(function () {
+                $('#stars').append(
+                '<div class="stars"></div>' +
+                '<div class="twinkling"></div>'
+                );
+                $('.star-wars').html('<div class="crawl">\n' +
+
+                    ' <div class="title">' +
+                    '   <p></p>'+
+                    '   <h1 class="title-name"></h1>' +
+                    '   <div id="crawl"></div\n' +
+
+                    ' </div>');
+
+                $.ajax({
+                    'url': 'https://swapi.co/api/films/',
+                    'type': 'GET',
+                    'data': {
+                        'search': $('#favSW').val()
+                    }
+                }).done(function (data, status, jqXhr) {
+                    var episode = data.results[0].episode_id;
+                    $('#crawl').html( data.results[0].opening_crawl );
+                    $('.title').children('h1').html( data.results[0].title );
+                    if(episode === 1){
+                        $('.title').children('p').html( 'Episode I')
+                    }else if( episode === 2){
+                        $('.title').children('p').html( 'Episode II')
+                    }else if(episode === 3){
+                        $('.title').children('p').html( 'Episode III')
+                    } else if(episode === 4){
+                        $('.title').children('p').html( 'Episode IV')
+                    }else if(episode === 5){
+                        $('.title').children('p').html( 'Episode V')
+                    }else if(episode === 6){
+                        $('.title').children('p').html( 'Episode VI')
+                    } else if(episode === 7){
+                        $('.title').children('p').html( 'Episode VII')
+                    }
+
+                    console.log(episode)
+
+                }).fail(function (data, status) {
+                    console.log('nah dog' + status);
+
+                })
+            },2300);
+        });
+
+
+    </script>
+</body>
+</html>
