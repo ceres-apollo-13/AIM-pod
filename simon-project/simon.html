@@ -5,14 +5,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Simon</title>
+    <title>Simone</title>
     <link rel="stylesheet" href="css/simon.css">
+
 </head>
 <body>
 
     <div class="circle">
         <div class="inner-circle">
-            <h3>SIMON</h3>
+            <h3>SIMONE</h3>
             <button id="start">New Game</button>
             <p>Round: <span id="count">0</span></p>
         </div>
@@ -25,13 +26,7 @@
         <div class="top-right2"></div>
         <div class="top-left2"></div>
     </div>
-    <script
-            src="http://code.jquery.com/jquery-2.2.4.min.js"
-            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-            crossorigin="anonymous">
-    </script>
-
-
+    <script src="../js/jquery-2.2.4.js"></script>
     <script src="js/accessory.js"></script>
     <script>
         "use strict";
@@ -55,25 +50,25 @@
                 if(num === green){
                     setTimeout(function () {
                         greenLight();
-                    }, ((index + 1) * 1000) + 800)
+                    }, ((index + 1) * 1000) + 600)
 
                 }else if(num === red){
 
                     setTimeout(function () {
                         redLight();
-                    }, (index + 1) * 1000 + 800)
+                    }, (index + 1) * 1000 + 600)
 
                 }else if(num === yellow){
 
                     setTimeout(function () {
                        yellowLight();
-                    }, ((index + 1) * 1000) + 800)
+                    }, ((index + 1) * 1000) + 600)
 
                 }else if(num === blue) {
 
                     setTimeout(function () {
                        blueLight();
-                    }, ((index + 1) * 1000) + 800)
+                    }, ((index + 1) * 1000) + 600)
                 }
             })
         }
@@ -81,6 +76,7 @@
         //
 
         $('#start').click(function () {
+            count = 0;
             simonsPicks = [];
             simonsColor();
             runSimon(simonsPicks);
@@ -88,6 +84,7 @@
             playerPicks = [];
             $('#count').html(count);
         });
+
 
         function nextRound(){
             simonsColor();
@@ -121,7 +118,7 @@
         $('.top-left, .top-right, .bottom-left, .bottom-right').click(function () {
             if (playerPicks.join(',') === simonsPicks.join(',')) {
                 nextRound();
-            }else if(playerPicks.length > simonsPicks.length){
+            }else if(playerPicks.length === simonsPicks.length && playerPicks.join(',') !== simonsPicks.join()){
                 alert('game over')
             }
         })
